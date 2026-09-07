@@ -3,21 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PORSCHE — Night Drive</title>
+
+<title>PORSCHE — NIGHT DRIVE</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    background:#050505;
-    color:white;
+    background:#020202;
+    color:#fff;
     font-family:Arial,Helvetica,sans-serif;
     overflow-x:hidden;
 }
+
+/* ================= HERO ================= */
 
 .hero{
     min-height:100vh;
@@ -26,14 +34,12 @@ body{
     align-items:center;
     justify-content:center;
     overflow:hidden;
-    background:
-        radial-gradient(circle at 50% 45%,#242424 0%,#0b0b0b 35%,#020202 75%);
-    transition:1.2s ease;
-}
 
-.hero.started{
     background:
-        radial-gradient(circle at 50% 45%,#400000 0%,#0b0505 30%,#000 75%);
+    radial-gradient(circle at 50% 45%,
+    #292929 0%,
+    #0b0b0b 35%,
+    #020202 75%);
 }
 
 .nav{
@@ -45,7 +51,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    z-index:5;
+    z-index:10;
 }
 
 .logo{
@@ -55,61 +61,53 @@ body{
 }
 
 .menu{
-    width:38px;
-    height:38px;
+    width:40px;
+    height:40px;
     border:1px solid #444;
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:13px;
-    transition:.5s;
-}
-
-.hero.started .menu{
-    border-color:#e00000;
-    box-shadow:0 0 20px rgba(224,0,0,.5);
 }
 
 .background-text{
     position:absolute;
-    font-size:clamp(100px,22vw,300px);
+    font-size:clamp(120px,25vw,320px);
     font-weight:900;
+    color:rgba(255,255,255,.025);
     letter-spacing:-15px;
-    color:rgba(255,255,255,0.025);
-    user-select:none;
 }
 
 .content{
     position:relative;
     z-index:2;
     text-align:center;
-    transition:1s ease;
 }
 
 .small-title{
     font-size:11px;
     letter-spacing:6px;
     opacity:.55;
-    margin-bottom:18px;
-    transition:.8s;
+    margin-bottom:20px;
 }
 
 .number{
-    font-size:clamp(120px,25vw,260px);
+    font-size:clamp(140px,28vw,280px);
     line-height:.8;
     font-weight:900;
     letter-spacing:-15px;
+
     background:linear-gradient(
         180deg,
-        #ffffff,
-        #777777 55%,
-        #222222
+        #fff,
+        #777 55%,
+        #222
     );
+
     -webkit-background-clip:text;
     color:transparent;
-    text-shadow:0 15px 40px rgba(0,0,0,.8);
-    transition:1s ease;
+
+    text-shadow:0 20px 50px #000;
 }
 
 .red-line{
@@ -117,189 +115,409 @@ body{
     height:2px;
     background:#e00000;
     margin:35px auto 25px;
+
     box-shadow:
-        0 0 10px #e00000,
-        0 0 30px rgba(224,0,0,.5);
+    0 0 10px #e00000,
+    0 0 35px rgba(224,0,0,.6);
+
     animation:pulse 2s infinite;
-    transition:.5s;
 }
 
 @keyframes pulse{
     0%,100%{
-        opacity:.4;
         transform:scaleX(.7);
+        opacity:.5;
     }
 
     50%{
-        opacity:1;
         transform:scaleX(1.2);
+        opacity:1;
     }
 }
 
-/* ENGINE START */
-
-.hero.started .number{
-    transform:scale(1.18);
-    filter:brightness(1.5);
-}
-
-.hero.started .red-line{
-    width:280px;
-    box-shadow:
-        0 0 15px #e00000,
-        0 0 60px #e00000;
-    animation:engineLine .25s infinite;
-}
-
-@keyframes engineLine{
-    0%{transform:scaleX(.8);}
-    50%{transform:scaleX(1.15);}
-    100%{transform:scaleX(.9);}
-}
-
-.hero.started .content{
-    animation:engineShake .45s ease;
-}
-
-@keyframes engineShake{
-    0%{transform:translateX(0);}
-    20%{transform:translateX(-7px);}
-    40%{transform:translateX(7px);}
-    60%{transform:translateX(-5px);}
-    80%{transform:translateX(5px);}
-    100%{transform:translateX(0);}
-}
-
 .start{
-    position:relative;
-    padding:16px 38px;
+    padding:16px 40px;
     background:transparent;
-    color:white;
     border:1px solid #555;
-    cursor:pointer;
+    color:white;
     font-size:10px;
     letter-spacing:5px;
-    transition:.35s;
-    overflow:hidden;
-}
-
-.start::before{
-    content:"";
-    position:absolute;
-    left:-100%;
-    top:0;
-    width:100%;
-    height:100%;
-    background:white;
-    transition:.35s;
-    z-index:-1;
+    cursor:pointer;
+    transition:.4s;
 }
 
 .start:hover{
-    color:#000;
-    border-color:white;
-}
-
-.start:hover::before{
-    left:0;
-}
-
-.hero.started .start{
     background:white;
     color:black;
-    border-color:white;
 }
 
 .bottom{
     position:absolute;
     bottom:30px;
-    left:0;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:12px;
-    opacity:.4;
     font-size:9px;
-    letter-spacing:3px;
+    letter-spacing:4px;
+    opacity:.4;
 }
 
 .dot{
+    display:inline-block;
     width:5px;
     height:5px;
     background:#e00000;
     border-radius:50%;
+    margin-right:8px;
     box-shadow:0 0 10px #e00000;
 }
 
-.side-left{
-    position:absolute;
-    left:7%;
-    bottom:28%;
-    writing-mode:vertical-rl;
-    font-size:8px;
-    letter-spacing:4px;
-    opacity:.25;
+
+/* ================= DRIVE ================= */
+
+.drive{
+    min-height:130vh;
+    position:relative;
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        to bottom,
+        #020202,
+        #080808 50%,
+        #020202
+    );
+
+    padding:130px 7%;
 }
 
-.side-right{
+/* ROAD */
+
+.road{
     position:absolute;
-    right:7%;
-    bottom:28%;
-    writing-mode:vertical-rl;
-    transform:rotate(180deg);
-    font-size:8px;
-    letter-spacing:4px;
-    opacity:.25;
+    left:50%;
+    top:0;
+
+    width:3px;
+    height:100%;
+
+    transform:translateX(-50%);
+
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 35px,
+        rgba(255,255,255,.7) 35px,
+        rgba(255,255,255,.7) 75px
+    );
+
+    opacity:.18;
+
+    animation:roadMove 1s linear infinite;
 }
 
-@media(max-width:600px){
-
-    .nav{
-        padding:0 6%;
+@keyframes roadMove{
+    from{
+        background-position:0 0;
     }
+
+    to{
+        background-position:0 110px;
+    }
+}
+
+/* SIDE LIGHTS */
+
+.light{
+    position:absolute;
+    width:2px;
+    height:120px;
+
+    background:#e00000;
+
+    box-shadow:
+    0 0 15px #e00000,
+    0 0 40px rgba(224,0,0,.5);
+
+    opacity:.35;
+}
+
+.light1{
+    left:18%;
+    top:25%;
+}
+
+.light2{
+    right:18%;
+    top:45%;
+}
+
+.light3{
+    left:28%;
+    top:70%;
+}
+
+.light4{
+    right:28%;
+    top:80%;
+}
+
+/* DRIVE CONTENT */
+
+.drive-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:700px;
+    margin:auto;
+}
+
+.drive-label{
+    font-size:10px;
+    letter-spacing:6px;
+    opacity:.45;
+    margin-bottom:25px;
+}
+
+.drive-title{
+    font-size:clamp(45px,10vw,100px);
+    font-weight:900;
+    letter-spacing:-5px;
+}
+
+.drive-title span{
+    color:#e00000;
+}
+
+.drive-description{
+    margin:30px auto;
+    max-width:450px;
+    font-size:13px;
+    line-height:1.8;
+    opacity:.45;
+}
+
+/* SPEED */
+
+.speed-box{
+    margin:70px auto 0;
+
+    width:280px;
+    padding:30px;
+
+    border:1px solid #252525;
+
+    background:rgba(255,255,255,.025);
+
+    backdrop-filter:blur(10px);
+}
+
+.speed-label{
+    font-size:9px;
+    letter-spacing:4px;
+    opacity:.4;
+}
+
+.speed{
+    font-size:70px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.speed-unit{
+    font-size:9px;
+    letter-spacing:3px;
+    color:#e00000;
+}
+
+
+/* ================= SPECS ================= */
+
+.specs{
+    min-height:100vh;
+    padding:120px 7%;
+
+    background:#050505;
+}
+
+.spec-title{
+    font-size:12px;
+    letter-spacing:6px;
+    opacity:.45;
+    margin-bottom:20px;
+}
+
+.spec-heading{
+    font-size:clamp(45px,9vw,90px);
+    font-weight:900;
+    letter-spacing:-4px;
+}
+
+.spec-heading span{
+    color:#e00000;
+}
+
+.grid{
+    margin-top:70px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.card{
+    min-height:190px;
+
+    border:1px solid #202020;
+
+    padding:30px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    background:
+    linear-gradient(
+        145deg,
+        #101010,
+        #050505
+    );
+
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#e00000;
+}
+
+.card small{
+    font-size:9px;
+    letter-spacing:4px;
+    opacity:.35;
+}
+
+.card strong{
+    font-size:42px;
+}
+
+.card span{
+    font-size:9px;
+    letter-spacing:2px;
+    color:#e00000;
+}
+
+
+/* ================= FINAL ================= */
+
+.final{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+    radial-gradient(
+        circle,
+        #200000,
+        #050000 35%,
+        #000 75%
+    );
+}
+
+.final-small{
+    font-size:10px;
+    letter-spacing:6px;
+    opacity:.5;
+}
+
+.final h2{
+    font-size:clamp(55px,12vw,140px);
+    line-height:.85;
+    margin:30px 0;
+    letter-spacing:-7px;
+}
+
+.final h2 span{
+    color:#e00000;
+}
+
+.restart{
+    padding:15px 35px;
+
+    background:transparent;
+    border:1px solid #444;
+
+    color:white;
+
+    letter-spacing:4px;
+    font-size:9px;
+
+    cursor:pointer;
+}
+
+.restart:hover{
+    background:white;
+    color:black;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
 
     .logo{
         font-size:14px;
         letter-spacing:5px;
     }
 
-    .number{
-        font-size:150px;
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    .background-text{
-        font-size:120px;
+    .drive{
+        padding:110px 6%;
     }
 
-    .side-left,
-    .side-right{
-        display:none;
+    .specs{
+        padding:100px 6%;
     }
+
+    .speed-box{
+        width:240px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<section class="hero" id="hero">
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
 
     <div class="nav">
-        <div class="logo">PORSCHE</div>
-        <div class="menu">+</div>
+
+        <div class="logo">
+            PORSCHE
+        </div>
+
+        <div class="menu">
+            +
+        </div>
+
     </div>
+
 
     <div class="background-text">
         911
     </div>
 
-    <div class="side-left">
-        PERFORMANCE • PRECISION • PASSION
-    </div>
-
-    <div class="side-right">
-        NIGHT DRIVE EXPERIENCE
-    </div>
 
     <div class="content">
 
@@ -313,41 +531,276 @@ body{
 
         <div class="red-line"></div>
 
-        <button class="start" id="startButton" onclick="startEngine()">
+        <button
+        class="start"
+        onclick="startEngine()"
+        id="startButton">
+
             START ENGINE
+
         </button>
 
     </div>
 
+
     <div class="bottom">
+
         <span class="dot"></span>
-        <span id="bottomText">SCROLL TO ENTER</span>
+
+        SCROLL TO ENTER
+
     </div>
 
 </section>
 
+
+
+<!-- ================= DRIVE ================= -->
+
+<section class="drive">
+
+    <div class="road"></div>
+
+    <div class="light light1"></div>
+    <div class="light light2"></div>
+    <div class="light light3"></div>
+    <div class="light light4"></div>
+
+
+    <div class="drive-content">
+
+        <div class="drive-label">
+            NIGHT DRIVE / 01
+        </div>
+
+        <div class="drive-title">
+            FEEL THE <span>ROAD.</span>
+        </div>
+
+        <div class="drive-description">
+
+            Not just a drive.
+            A machine built around precision,
+            control and pure emotion.
+
+        </div>
+
+
+        <div class="speed-box">
+
+            <div class="speed-label">
+                LIVE SPEED
+            </div>
+
+            <div
+            class="speed"
+            id="speed">
+
+                00
+
+            </div>
+
+            <div class="speed-unit">
+                KM / H
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= SPECS ================= -->
+
+<section class="specs">
+
+    <div class="spec-title">
+        PERFORMANCE / 02
+    </div>
+
+    <div class="spec-heading">
+        BUILT TO <span>MOVE.</span>
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <small>
+                POWER
+            </small>
+
+            <strong>
+                480
+            </strong>
+
+            <span>
+                HORSEPOWER
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <small>
+                0 — 100
+            </small>
+
+            <strong>
+                3.4
+            </strong>
+
+            <span>
+                SECONDS
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <small>
+                TOP SPEED
+            </small>
+
+            <strong>
+                308
+            </strong>
+
+            <span>
+                KM / H
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FINAL ================= -->
+
+<section class="final">
+
+    <div>
+
+        <div class="final-small">
+            THE JOURNEY ENDS HERE
+        </div>
+
+        <h2>
+            DON'T JUST<br>
+            <span>DRIVE.</span>
+        </h2>
+
+        <button
+        class="restart"
+        onclick="restartExperience()">
+
+            RESTART EXPERIENCE
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
 <script>
+
+/* ================= ENGINE ================= */
 
 function startEngine(){
 
-    const hero = document.getElementById("hero");
-    const button = document.getElementById("startButton");
-    const title = document.getElementById("title");
-    const bottomText = document.getElementById("bottomText");
+    const button =
+    document.getElementById("startButton");
 
-    hero.classList.add("started");
+    button.innerHTML =
+    "ENGINE STARTED";
 
-    button.innerHTML = "ENGINE STARTED";
-
-    title.innerHTML = "SYSTEM ONLINE";
-
-    bottomText.innerHTML = "NIGHT DRIVE READY";
+    document.body.classList.add("engine-on");
 
     setTimeout(function(){
 
-        button.innerHTML = "NIGHT DRIVE";
+        button.innerHTML =
+        "NIGHT DRIVE";
 
     },1200);
+
+}
+
+
+/* ================= SPEED ================= */
+
+let speedStarted = false;
+
+window.addEventListener("scroll",function(){
+
+    const speed =
+    document.getElementById("speed");
+
+    const drive =
+    document.querySelector(".drive");
+
+    const rect =
+    drive.getBoundingClientRect();
+
+    const windowHeight =
+    window.innerHeight;
+
+    if(
+        rect.top < windowHeight &&
+        rect.bottom > 0
+    ){
+
+        if(!speedStarted){
+
+            speedStarted = true;
+
+            let current = 0;
+
+            const timer =
+            setInterval(function(){
+
+                current += 4;
+
+                if(current >= 120){
+
+                    current = 120;
+
+                    clearInterval(timer);
+
+                }
+
+                speed.innerText =
+                String(current).padStart(2,"0");
+
+            },30);
+
+        }
+
+    }
+
+});
+
+
+/* ================= RESTART ================= */
+
+function restartExperience(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
 
 }
 
