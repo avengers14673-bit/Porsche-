@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>PORSCHE — Night Drive</title>
 
 <style>
@@ -20,8 +19,6 @@ body{
     overflow-x:hidden;
 }
 
-/* MAIN SCREEN */
-
 .hero{
     min-height:100vh;
     position:relative;
@@ -31,9 +28,13 @@ body{
     overflow:hidden;
     background:
         radial-gradient(circle at 50% 45%,#242424 0%,#0b0b0b 35%,#020202 75%);
+    transition:1.2s ease;
 }
 
-/* TOP */
+.hero.started{
+    background:
+        radial-gradient(circle at 50% 45%,#400000 0%,#0b0505 30%,#000 75%);
+}
 
 .nav{
     position:absolute;
@@ -62,9 +63,13 @@ body{
     align-items:center;
     justify-content:center;
     font-size:13px;
+    transition:.5s;
 }
 
-/* BIG TEXT */
+.hero.started .menu{
+    border-color:#e00000;
+    box-shadow:0 0 20px rgba(224,0,0,.5);
+}
 
 .background-text{
     position:absolute;
@@ -75,12 +80,11 @@ body{
     user-select:none;
 }
 
-/* CONTENT */
-
 .content{
     position:relative;
     z-index:2;
     text-align:center;
+    transition:1s ease;
 }
 
 .small-title{
@@ -88,6 +92,7 @@ body{
     letter-spacing:6px;
     opacity:.55;
     margin-bottom:18px;
+    transition:.8s;
 }
 
 .number{
@@ -104,9 +109,8 @@ body{
     -webkit-background-clip:text;
     color:transparent;
     text-shadow:0 15px 40px rgba(0,0,0,.8);
+    transition:1s ease;
 }
-
-/* RED LIGHT */
 
 .red-line{
     width:160px;
@@ -117,6 +121,7 @@ body{
         0 0 10px #e00000,
         0 0 30px rgba(224,0,0,.5);
     animation:pulse 2s infinite;
+    transition:.5s;
 }
 
 @keyframes pulse{
@@ -131,7 +136,39 @@ body{
     }
 }
 
-/* BUTTON */
+/* ENGINE START */
+
+.hero.started .number{
+    transform:scale(1.18);
+    filter:brightness(1.5);
+}
+
+.hero.started .red-line{
+    width:280px;
+    box-shadow:
+        0 0 15px #e00000,
+        0 0 60px #e00000;
+    animation:engineLine .25s infinite;
+}
+
+@keyframes engineLine{
+    0%{transform:scaleX(.8);}
+    50%{transform:scaleX(1.15);}
+    100%{transform:scaleX(.9);}
+}
+
+.hero.started .content{
+    animation:engineShake .45s ease;
+}
+
+@keyframes engineShake{
+    0%{transform:translateX(0);}
+    20%{transform:translateX(-7px);}
+    40%{transform:translateX(7px);}
+    60%{transform:translateX(-5px);}
+    80%{transform:translateX(5px);}
+    100%{transform:translateX(0);}
+}
 
 .start{
     position:relative;
@@ -167,7 +204,11 @@ body{
     left:0;
 }
 
-/* BOTTOM */
+.hero.started .start{
+    background:white;
+    color:black;
+    border-color:white;
+}
 
 .bottom{
     position:absolute;
@@ -191,8 +232,6 @@ body{
     box-shadow:0 0 10px #e00000;
 }
 
-/* SIDE DETAILS */
-
 .side-left{
     position:absolute;
     left:7%;
@@ -213,8 +252,6 @@ body{
     letter-spacing:4px;
     opacity:.25;
 }
-
-/* MOBILE */
 
 @media(max-width:600px){
 
@@ -245,7 +282,7 @@ body{
 
 <body>
 
-<section class="hero">
+<section class="hero" id="hero">
 
     <div class="nav">
         <div class="logo">PORSCHE</div>
@@ -266,7 +303,7 @@ body{
 
     <div class="content">
 
-        <div class="small-title">
+        <div class="small-title" id="title">
             THE NIGHT DRIVE EXPERIENCE
         </div>
 
@@ -276,7 +313,7 @@ body{
 
         <div class="red-line"></div>
 
-        <button class="start" onclick="startEngine()">
+        <button class="start" id="startButton" onclick="startEngine()">
             START ENGINE
         </button>
 
@@ -284,7 +321,7 @@ body{
 
     <div class="bottom">
         <span class="dot"></span>
-        SCROLL TO ENTER
+        <span id="bottomText">SCROLL TO ENTER</span>
     </div>
 
 </section>
@@ -293,19 +330,25 @@ body{
 
 function startEngine(){
 
-    const button = document.querySelector(".start");
+    const hero = document.getElementById("hero");
+    const button = document.getElementById("startButton");
+    const title = document.getElementById("title");
+    const bottomText = document.getElementById("bottomText");
+
+    hero.classList.add("started");
 
     button.innerHTML = "ENGINE STARTED";
 
-    button.style.background = "white";
-    button.style.color = "black";
-    button.style.borderColor = "white";
+    title.innerHTML = "SYSTEM ONLINE";
+
+    bottomText.innerHTML = "NIGHT DRIVE READY";
 
     setTimeout(function(){
 
         button.innerHTML = "NIGHT DRIVE";
 
     },1200);
+
 }
 
 </script>
