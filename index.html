@@ -17,31 +17,38 @@ body {
         radial-gradient(circle at center, #202020 0%, #080808 55%, #000 100%);
     color: white;
     font-family: Arial, sans-serif;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     overflow: hidden;
 }
 
 .container {
     width: min(92%, 430px);
-    text-align: center;
     padding: 28px 20px;
+    text-align: center;
+
     border: 1px solid #333;
     border-radius: 24px;
-    background: rgba(10,10,10,.88);
-    box-shadow: 0 0 40px rgba(255,255,255,.08);
+
+    background: rgba(10, 10, 10, 0.90);
+
+    box-shadow:
+        0 0 40px rgba(255,255,255,0.08);
 }
 
 h1 {
     margin: 0 0 8px;
-    font-size: 28px;
+
+    font-size: 27px;
     letter-spacing: 2px;
 }
 
 .subtitle {
-    color: #999;
-    font-size: 13px;
+    color: #888;
+    font-size: 12px;
     margin-bottom: 25px;
 }
 
@@ -53,41 +60,61 @@ h1 {
 
 .label {
     color: #888;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 3px;
 }
 
 .bar {
     width: 100%;
     height: 12px;
+
     background: #222;
     border-radius: 20px;
+
     margin: 22px 0;
+
     overflow: hidden;
 }
 
 .fill {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #555, #fff);
-    transition: width .05s linear;
+
+    background: linear-gradient(
+        90deg,
+        #555,
+        #fff
+    );
+
+    transition: width 0.05s linear;
 }
 
 button {
     width: 100%;
+
     padding: 15px;
     margin-top: 12px;
+
     border: 1px solid #444;
     border-radius: 12px;
+
     background: #171717;
     color: white;
-    font-size: 15px;
+
+    font-size: 14px;
     font-weight: bold;
+
     cursor: pointer;
+
+    transition: 0.15s;
 }
 
 button:hover {
     background: #292929;
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 button.active {
@@ -97,21 +124,54 @@ button.active {
 
 .mode-row {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 8px;
+
     margin-top: 10px;
 }
 
 .mode-row button {
     margin-top: 0;
-    padding: 11px 5px;
-    font-size: 12px;
+    padding: 11px 4px;
+
+    font-size: 11px;
+}
+
+.gear-box {
+    margin-top: 20px;
+
+    padding: 14px;
+
+    border: 1px solid #292929;
+    border-radius: 15px;
+
+    background: #0d0d0d;
+}
+
+.gear-label {
+    color: #777;
+
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.gear-number {
+    margin-top: 3px;
+
+    font-size: 36px;
+    font-weight: bold;
 }
 
 .status {
     margin-top: 18px;
+
     color: #888;
-    font-size: 12px;
+
+    font-size: 11px;
+    letter-spacing: 1px;
 }
 </style>
 </head>
@@ -121,95 +181,259 @@ button.active {
 <div class="container">
 
     <h1>SPORTS CAR ENGINE</h1>
-    <div class="subtitle">Synthetic High-Performance Engine Simulator</div>
 
-    <div class="rpm" id="rpm">800</div>
-    <div class="label">RPM</div>
+    <div class="subtitle">
+        SYNTHETIC HIGH-PERFORMANCE ENGINE
+    </div>
 
+    <!-- RPM -->
+    <div class="rpm" id="rpm">
+        800
+    </div>
+
+    <div class="label">
+        RPM
+    </div>
+
+    <!-- RPM BAR -->
     <div class="bar">
-        <div class="fill" id="rpmBar"></div>
+        <div
+            class="fill"
+            id="rpmBar">
+        </div>
     </div>
 
-    <button id="startBtn">START ENGINE</button>
-    <button id="revBtn">REV ENGINE</button>
+    <!-- START / STOP -->
+    <button id="startBtn">
+        START ENGINE
+    </button>
 
+    <!-- REV -->
+    <button id="revBtn">
+        REV ENGINE
+    </button>
+
+    <!-- GEAR -->
+    <div class="gear-box">
+
+        <div class="gear-label">
+            CURRENT GEAR
+        </div>
+
+        <div
+            class="gear-number"
+            id="gear">
+            N
+        </div>
+
+        <button id="gearBtn">
+            SHIFT GEAR
+        </button>
+
+    </div>
+
+    <!-- MODES -->
     <div class="mode-row">
-        <button class="mode active" data-mode="normal">NORMAL</button>
-        <button class="mode" data-mode="sport">SPORT</button>
-        <button class="mode" data-mode="track">TRACK</button>
+
+        <button
+            class="mode active"
+            data-mode="normal">
+            NORMAL
+        </button>
+
+        <button
+            class="mode"
+            data-mode="sport">
+            SPORT
+        </button>
+
+        <button
+            class="mode"
+            data-mode="track">
+            TRACK
+        </button>
+
     </div>
 
-    <div class="status" id="status">
-        Engine OFF
+    <div
+        class="status"
+        id="status">
+        ENGINE OFF
     </div>
 
 </div>
 
+
 <script>
-let audioCtx;
-let masterGain;
-let engineOsc;
-let harmonicOsc;
-let filter;
+
+/* =========================================
+   AUDIO ENGINE
+========================================= */
+
+let audioCtx = null;
+
+let masterGain = null;
+let engineOsc = null;
+let harmonicOsc = null;
+let filter = null;
 
 let engineRunning = false;
+
 let rpm = 800;
 let targetRPM = 800;
-let mode = "normal";
-let revTimeout;
 
-const rpmDisplay = document.getElementById("rpm");
-const rpmBar = document.getElementById("rpmBar");
-const startBtn = document.getElementById("startBtn");
-const revBtn = document.getElementById("revBtn");
-const statusText = document.getElementById("status");
+let mode = "normal";
+
+let currentGear = 0;
+
+let revTimeout = null;
+
+
+/* =========================================
+   HTML ELEMENTS
+========================================= */
+
+const rpmDisplay =
+    document.getElementById("rpm");
+
+const rpmBar =
+    document.getElementById("rpmBar");
+
+const startBtn =
+    document.getElementById("startBtn");
+
+const revBtn =
+    document.getElementById("revBtn");
+
+const gearBtn =
+    document.getElementById("gearBtn");
+
+const gearDisplay =
+    document.getElementById("gear");
+
+const statusText =
+    document.getElementById("status");
+
+
+/* =========================================
+   CREATE SYNTHETIC ENGINE
+========================================= */
 
 function createEngine() {
 
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    audioCtx =
+        new (
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
 
-    masterGain = audioCtx.createGain();
+
+    /* MASTER */
+
+    masterGain =
+        audioCtx.createGain();
+
     masterGain.gain.value = 0;
 
-    filter = audioCtx.createBiquadFilter();
+
+    /* FILTER */
+
+    filter =
+        audioCtx.createBiquadFilter();
+
     filter.type = "lowpass";
-    filter.frequency.value = 1200;
+
+    filter.frequency.value = 1000;
+
     filter.Q.value = 1.2;
 
-    engineOsc = audioCtx.createOscillator();
+
+    /* MAIN ENGINE */
+
+    engineOsc =
+        audioCtx.createOscillator();
+
     engineOsc.type = "sawtooth";
 
-    harmonicOsc = audioCtx.createOscillator();
+
+    /* HARMONIC */
+
+    harmonicOsc =
+        audioCtx.createOscillator();
+
     harmonicOsc.type = "square";
 
+
+    /* CONNECTION */
+
     engineOsc.connect(filter);
+
     harmonicOsc.connect(filter);
 
     filter.connect(masterGain);
-    masterGain.connect(audioCtx.destination);
+
+    masterGain.connect(
+        audioCtx.destination
+    );
+
+
+    /* START OSCILLATORS */
 
     engineOsc.start();
+
     harmonicOsc.start();
+
 
     updateSound();
 }
+
+
+/* =========================================
+   UPDATE ENGINE SOUND
+========================================= */
 
 function updateSound() {
 
     if (!audioCtx) return;
 
-    let baseFreq = rpm / 60;
 
-    // Sports-car style harmonic engine character
-    let engineFrequency = baseFreq * 8;
+    /*
+       Base engine frequency
+    */
+
+    let baseFrequency =
+        rpm / 60;
+
+
+    /*
+       High-rev sports-car character
+    */
+
+    let engineFrequency =
+        baseFrequency * 8;
+
+
+    /*
+       MODE CHANGES
+    */
 
     if (mode === "sport") {
+
         engineFrequency *= 1.15;
+
     }
 
+
     if (mode === "track") {
+
         engineFrequency *= 1.28;
+
     }
+
+
+    /*
+       Main oscillator
+    */
 
     engineOsc.frequency.setTargetAtTime(
         engineFrequency,
@@ -217,16 +441,40 @@ function updateSound() {
         0.025
     );
 
+
+    /*
+       Harmonic oscillator
+    */
+
     harmonicOsc.frequency.setTargetAtTime(
         engineFrequency * 2.01,
         audioCtx.currentTime,
         0.025
     );
 
-    let cutoff = 700 + (rpm / 9000) * 4500;
 
-    if (mode === "sport") cutoff *= 1.15;
-    if (mode === "track") cutoff *= 1.35;
+    /*
+       Filter opens with RPM
+    */
+
+    let cutoff =
+        700 +
+        (rpm / 9000) * 4500;
+
+
+    if (mode === "sport") {
+
+        cutoff *= 1.15;
+
+    }
+
+
+    if (mode === "track") {
+
+        cutoff *= 1.35;
+
+    }
+
 
     filter.frequency.setTargetAtTime(
         cutoff,
@@ -234,135 +482,471 @@ function updateSound() {
         0.04
     );
 
+
+    /*
+       Engine volume
+    */
+
     if (engineRunning) {
 
-        let volume = 0.055 + (rpm / 9000) * 0.12;
+        let volume =
+            0.055 +
+            (rpm / 9000) * 0.12;
 
-        if (mode === "sport") volume *= 1.15;
-        if (mode === "track") volume *= 1.3;
+
+        if (mode === "sport") {
+
+            volume *= 1.15;
+
+        }
+
+
+        if (mode === "track") {
+
+            volume *= 1.3;
+
+        }
+
 
         masterGain.gain.setTargetAtTime(
             volume,
             audioCtx.currentTime,
             0.06
         );
+
     }
 }
+
+
+/* =========================================
+   ENGINE ANIMATION
+========================================= */
 
 function animateEngine() {
 
     if (!engineRunning) return;
 
-    rpm += (targetRPM - rpm) * 0.075;
 
-    if (Math.abs(targetRPM - rpm) < 5) {
+    /*
+       Smooth RPM movement
+    */
+
+    rpm +=
+        (targetRPM - rpm) * 0.075;
+
+
+    if (
+        Math.abs(
+            targetRPM - rpm
+        ) < 5
+    ) {
+
         rpm = targetRPM;
+
     }
 
-    rpmDisplay.textContent = Math.round(rpm);
 
-    let percentage = ((rpm - 800) / (9000 - 800)) * 100;
+    /*
+       Display RPM
+    */
+
+    rpmDisplay.textContent =
+        Math.round(rpm);
+
+
+    /*
+       RPM BAR
+    */
+
+    let percentage =
+        ((rpm - 800) /
+        (9000 - 800)) * 100;
+
+
+    percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percentage
+            )
+        );
+
 
     rpmBar.style.width =
-        Math.max(0, Math.min(100, percentage)) + "%";
+        percentage + "%";
+
+
+    /*
+       Update sound
+    */
 
     updateSound();
 
-    requestAnimationFrame(animateEngine);
+
+    requestAnimationFrame(
+        animateEngine
+    );
 }
 
-startBtn.addEventListener("click", async () => {
 
-    if (!audioCtx) {
-        createEngine();
+/* =========================================
+   START / STOP ENGINE
+========================================= */
+
+startBtn.addEventListener(
+    "click",
+    async () => {
+
+        /*
+           Create audio after user interaction
+        */
+
+        if (!audioCtx) {
+
+            createEngine();
+
+        }
+
+
+        /*
+           Resume audio
+        */
+
+        if (
+            audioCtx.state ===
+            "suspended"
+        ) {
+
+            await audioCtx.resume();
+
+        }
+
+
+        /*
+           START
+        */
+
+        if (!engineRunning) {
+
+            engineRunning = true;
+
+            currentGear = 1;
+
+            gearDisplay.textContent = 1;
+
+            targetRPM = 1100;
+
+
+            masterGain.gain.setTargetAtTime(
+                0.07,
+                audioCtx.currentTime,
+                0.3
+            );
+
+
+            startBtn.textContent =
+                "STOP ENGINE";
+
+
+            statusText.textContent =
+                "ENGINE RUNNING";
+
+
+            animateEngine();
+
+        }
+
+
+        /*
+           STOP
+        */
+
+        else {
+
+            engineRunning = false;
+
+            targetRPM = 800;
+
+
+            masterGain.gain.setTargetAtTime(
+                0,
+                audioCtx.currentTime,
+                0.25
+            );
+
+
+            startBtn.textContent =
+                "START ENGINE";
+
+
+            statusText.textContent =
+                "ENGINE OFF";
+
+
+            currentGear = 0;
+
+            gearDisplay.textContent =
+                "N";
+
+
+            rpm = 800;
+
+            rpmDisplay.textContent =
+                "800";
+
+            rpmBar.style.width =
+                "0%";
+        }
+
     }
+);
 
-    if (audioCtx.state === "suspended") {
-        await audioCtx.resume();
-    }
 
-    if (!engineRunning) {
+/* =========================================
+   REV ENGINE
+========================================= */
 
-        engineRunning = true;
-        targetRPM = 1100;
+revBtn.addEventListener(
+    "click",
+    async () => {
 
-        masterGain.gain.setTargetAtTime(
-            0.07,
-            audioCtx.currentTime,
-            0.3
+        if (!engineRunning)
+            return;
+
+
+        if (
+            audioCtx.state ===
+            "suspended"
+        ) {
+
+            await audioCtx.resume();
+
+        }
+
+
+        clearTimeout(
+            revTimeout
         );
 
-        startBtn.textContent = "STOP ENGINE";
-        statusText.textContent = "Engine RUNNING";
 
-        animateEngine();
-
-    } else {
-
-        engineRunning = false;
-        targetRPM = 800;
-
-        masterGain.gain.setTargetAtTime(
-            0,
-            audioCtx.currentTime,
-            0.25
-        );
-
-        startBtn.textContent = "START ENGINE";
-        statusText.textContent = "Engine OFF";
-
-        rpm = 800;
-        rpmDisplay.textContent = "800";
-        rpmBar.style.width = "0%";
-    }
-});
-
-revBtn.addEventListener("click", async () => {
-
-    if (!engineRunning) return;
-
-    if (audioCtx.state === "suspended") {
-        await audioCtx.resume();
-    }
-
-    clearTimeout(revTimeout);
-
-    targetRPM =
-        mode === "normal" ? 6500 :
-        mode === "sport" ? 7600 :
-        8500;
-
-    statusText.textContent = "REVVING...";
-
-    revTimeout = setTimeout(() => {
+        /*
+           Different RPM by mode
+        */
 
         targetRPM =
-            mode === "normal" ? 1100 :
-            mode === "sport" ? 1300 :
-            1500;
+            mode === "normal"
+                ? 6500
+                : mode === "sport"
+                    ? 7600
+                    : 8500;
 
-        statusText.textContent = "Engine RUNNING";
-
-    }, 1100);
-});
-
-document.querySelectorAll(".mode").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        document.querySelectorAll(".mode")
-            .forEach(b => b.classList.remove("active"));
-
-        button.classList.add("active");
-
-        mode = button.dataset.mode;
 
         statusText.textContent =
-            "Mode: " + mode.toUpperCase();
+            "REVVING...";
 
-        updateSound();
-    });
-});
+
+        /*
+           Return to lower RPM
+        */
+
+        revTimeout =
+            setTimeout(
+                () => {
+
+                    targetRPM =
+                        mode === "normal"
+                            ? 1100
+                            : mode === "sport"
+                                ? 1300
+                                : 1500;
+
+
+                    statusText.textContent =
+                        "ENGINE RUNNING";
+
+                },
+                1100
+            );
+
+    }
+);
+
+
+/* =========================================
+   GEAR SHIFT
+========================================= */
+
+gearBtn.addEventListener(
+    "click",
+    () => {
+
+        if (!engineRunning)
+            return;
+
+
+        clearTimeout(
+            revTimeout
+        );
+
+
+        /*
+           Maximum 7 gears
+        */
+
+        if (currentGear < 7) {
+
+            currentGear++;
+
+        }
+
+        else {
+
+            currentGear = 1;
+
+        }
+
+
+        /*
+           Display gear
+        */
+
+        gearDisplay.textContent =
+            currentGear;
+
+
+        /*
+           RPM DROP
+           during gear shift
+        */
+
+        targetRPM =
+            Math.max(
+                1500,
+                rpm - 1800
+            );
+
+
+        statusText.textContent =
+            "SHIFTING → GEAR " +
+            currentGear;
+
+
+        /*
+           Acceleration after shift
+        */
+
+        setTimeout(
+            () => {
+
+                if (!engineRunning)
+                    return;
+
+
+                let gearRPM =
+                    1700 +
+                    (currentGear * 750);
+
+
+                /*
+                   Mode multiplier
+                */
+
+                if (
+                    mode === "sport"
+                ) {
+
+                    gearRPM += 400;
+
+                }
+
+
+                if (
+                    mode === "track"
+                ) {
+
+                    gearRPM += 700;
+
+                }
+
+
+                targetRPM =
+                    Math.min(
+                        8500,
+                        gearRPM
+                    );
+
+
+                statusText.textContent =
+                    "GEAR " +
+                    currentGear;
+
+            },
+            220
+        );
+
+    }
+);
+
+
+/* =========================================
+   DRIVING MODES
+========================================= */
+
+document
+.querySelectorAll(".mode")
+.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                /*
+                   Remove active
+                */
+
+                document
+                .querySelectorAll(
+                    ".mode"
+                )
+                .forEach(
+                    b =>
+                    b.classList.remove(
+                        "active"
+                    )
+                );
+
+
+                /*
+                   Activate selected
+                */
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                /*
+                   Save mode
+                */
+
+                mode =
+                    button.dataset.mode;
+
+
+                statusText.textContent =
+                    "MODE: " +
+                    mode.toUpperCase();
+
+
+                updateSound();
+
+            }
+        );
+
+    }
+);
 
 </script>
 
