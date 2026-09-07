@@ -8,743 +8,886 @@
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-  background:#020202;
-  color:white;
-  font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden;
+    background:#000;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-  height:100vh;
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
+    height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
 
-  background:
-  radial-gradient(circle at center,#292929 0%,#0b0b0b 35%,#000 75%);
+    background:
+    radial-gradient(
+        circle at center,
+        #292929 0%,
+        #0b0b0b 35%,
+        #000 75%
+    );
 }
 
 .nav{
-  position:absolute;
-  top:30px;
-  left:0;
-  width:100%;
-  padding:0 7%;
+    position:absolute;
+    top:30px;
+    left:0;
+    width:100%;
+    padding:0 7%;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-  z-index:20;
+    z-index:20;
 }
 
 .logo{
-  font-size:18px;
-  font-weight:bold;
-  letter-spacing:7px;
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:7px;
 }
 
 .menu{
-  width:40px;
-  height:40px;
+    width:40px;
+    height:40px;
 
-  border:1px solid #444;
-  border-radius:50%;
+    border:1px solid #444;
+    border-radius:50%;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  color:#aaa;
+    color:#aaa;
 }
 
 .background-number{
-  position:absolute;
+    position:absolute;
 
-  font-size:clamp(150px,30vw,350px);
-  font-weight:900;
+    font-size:clamp(150px,30vw,350px);
+    font-weight:900;
 
-  color:rgba(255,255,255,.025);
-
-  letter-spacing:-20px;
+    color:rgba(255,255,255,.025);
+    letter-spacing:-20px;
 }
 
 .content{
-  text-align:center;
-  position:relative;
-  z-index:5;
+    position:relative;
+    z-index:5;
+    text-align:center;
 }
 
 .subtitle{
-  font-size:10px;
-  letter-spacing:6px;
-  opacity:.5;
-
-  margin-bottom:25px;
+    font-size:10px;
+    letter-spacing:6px;
+    opacity:.5;
+    margin-bottom:25px;
 }
 
 .number{
-  font-size:clamp(140px,28vw,280px);
+    font-size:clamp(140px,28vw,280px);
 
-  line-height:.75;
+    line-height:.75;
 
-  font-weight:900;
+    font-weight:900;
 
-  letter-spacing:-15px;
+    letter-spacing:-15px;
 
-  background:
-  linear-gradient(
-    180deg,
-    #fff,
-    #777 55%,
-    #222
-  );
+    background:
+    linear-gradient(
+        180deg,
+        #fff,
+        #777 55%,
+        #222
+    );
 
-  -webkit-background-clip:text;
-  color:transparent;
+    -webkit-background-clip:text;
+    color:transparent;
 
-  text-shadow:0 20px 50px #000;
-
-  transition:.8s;
+    text-shadow:0 20px 50px #000;
 }
 
 .red-line{
-  width:160px;
-  height:2px;
+    width:160px;
+    height:2px;
 
-  margin:40px auto 25px;
+    margin:40px auto 25px;
 
-  background:#e00000;
+    background:#e00000;
 
-  box-shadow:
-  0 0 10px #e00000,
-  0 0 35px rgba(224,0,0,.7);
+    box-shadow:
+    0 0 10px #e00000,
+    0 0 35px rgba(224,0,0,.7);
 
-  animation:pulse 2s infinite;
+    animation:pulse 2s infinite;
 }
 
 @keyframes pulse{
-  0%,100%{
-    transform:scaleX(.7);
-    opacity:.4;
-  }
+    0%,100%{
+        transform:scaleX(.7);
+        opacity:.4;
+    }
 
-  50%{
-    transform:scaleX(1.2);
-    opacity:1;
-  }
+    50%{
+        transform:scaleX(1.2);
+        opacity:1;
+    }
 }
 
 .start{
-  padding:16px 40px;
+    padding:16px 40px;
 
-  color:white;
-  background:transparent;
+    background:transparent;
+    color:white;
 
-  border:1px solid #555;
+    border:1px solid #555;
 
-  font-size:10px;
-  letter-spacing:5px;
+    font-size:10px;
+    letter-spacing:5px;
 
-  cursor:pointer;
+    cursor:pointer;
 
-  transition:.4s;
+    transition:.4s;
 }
 
 .start:hover{
-  background:white;
-  color:black;
+    background:white;
+    color:black;
 }
 
 .bottom{
-  position:absolute;
+    position:absolute;
+    bottom:30px;
 
-  bottom:30px;
+    font-size:9px;
+    letter-spacing:4px;
 
-  font-size:9px;
-  letter-spacing:4px;
-
-  opacity:.4;
+    opacity:.4;
 }
 
 .dot{
-  display:inline-block;
+    display:inline-block;
 
-  width:5px;
-  height:5px;
+    width:5px;
+    height:5px;
 
-  margin-right:8px;
+    margin-right:8px;
 
-  border-radius:50%;
+    background:#e00000;
 
-  background:#e00000;
+    border-radius:50%;
 
-  box-shadow:0 0 10px #e00000;
+    box-shadow:0 0 10px #e00000;
 }
 
 
 /* ================= DRIVE ================= */
 
 .drive{
-  min-height:130vh;
+    min-height:140vh;
 
-  position:relative;
+    position:relative;
 
-  overflow:hidden;
+    overflow:hidden;
 
-  padding:120px 7%;
+    padding:100px 7%;
 
-  background:
-  linear-gradient(
-    to bottom,
-    #020202,
-    #090909,
-    #020202
-  );
+    background:
+    linear-gradient(
+        to bottom,
+        #020202,
+        #080808,
+        #010101
+    );
 }
 
 
-/* ROAD */
+/* ================= PERSPECTIVE ROAD ================= */
 
 .road{
-  position:absolute;
+    position:absolute;
 
-  left:50%;
-  top:0;
+    left:50%;
+    bottom:-10%;
 
-  width:4px;
-  height:100%;
+    width:55%;
+    height:115%;
 
-  transform:translateX(-50%);
+    transform:
+    translateX(-50%)
+    perspective(500px)
+    rotateX(55deg);
 
-  background:
-  repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 45px,
-    rgba(255,255,255,.8) 45px,
-    rgba(255,255,255,.8) 90px
-  );
+    transform-origin:center bottom;
 
-  opacity:.2;
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 55px,
+        rgba(255,255,255,.7) 55px,
+        rgba(255,255,255,.7) 95px
+    );
 
-  animation:roadMove .8s linear infinite;
+    opacity:.2;
+
+    animation:
+    roadMove .65s linear infinite;
 }
 
 @keyframes roadMove{
-  from{
-    background-position:0 0;
-  }
 
-  to{
-    background-position:0 135px;
-  }
+    from{
+        background-position:0 0;
+    }
+
+    to{
+        background-position:0 150px;
+    }
 }
 
 
-/* SIDE LIGHTS */
+/* ROAD EDGES */
 
-.light{
-  position:absolute;
+.drive::before,
+.drive::after{
 
-  width:3px;
-  height:130px;
+    content:"";
 
-  background:#e00000;
+    position:absolute;
 
-  box-shadow:
-  0 0 15px #e00000,
-  0 0 40px rgba(224,0,0,.5);
+    bottom:0;
 
-  opacity:.35;
+    width:2px;
+    height:100%;
 
-  animation:lightMove 1.5s linear infinite;
+    background:#e00000;
+
+    opacity:.18;
+
+    box-shadow:
+    0 0 20px #e00000;
 }
 
-.light1{
-  left:15%;
-  top:20%;
+.drive::before{
+    left:22%;
 }
 
-.light2{
-  right:15%;
-  top:40%;
-}
-
-.light3{
-  left:25%;
-  top:70%;
-}
-
-.light4{
-  right:25%;
-  top:80%;
-}
-
-@keyframes lightMove{
-  from{
-    transform:translateY(-100px);
-  }
-
-  to{
-    transform:translateY(180px);
-  }
+.drive::after{
+    right:22%;
 }
 
 
-/* ================= CSS CAR ================= */
+/* ================= FRONT CAR ================= */
 
 .car-scene{
-  position:absolute;
 
-  left:50%;
-  top:50%;
+    position:absolute;
 
-  width:100%;
-  height:250px;
+    left:50%;
+    top:42%;
 
-  transform:translate(-50%,-50%);
+    width:100%;
+    height:400px;
 
-  z-index:5;
+    transform:
+    translate(-50%,-50%);
 
-  pointer-events:none;
+    z-index:8;
+
+    pointer-events:none;
 }
+
+
+/* GLOW */
+
+.car-glow{
+
+    position:absolute;
+
+    left:50%;
+    top:70%;
+
+    width:280px;
+    height:70px;
+
+    transform:translateX(-50%);
+
+    background:#e00000;
+
+    filter:blur(45px);
+
+    opacity:.25;
+
+    animation:
+    carGlow 1.2s infinite alternate;
+}
+
+@keyframes carGlow{
+
+    from{
+        opacity:.12;
+        transform:
+        translateX(-50%)
+        scale(.8);
+    }
+
+    to{
+        opacity:.35;
+        transform:
+        translateX(-50%)
+        scale(1.2);
+    }
+}
+
+
+/* CAR */
 
 .car{
-  position:absolute;
 
-  left:50%;
-  top:50%;
+    position:absolute;
 
-  width:330px;
-  height:120px;
+    left:50%;
+    top:50%;
 
-  transform:translate(-50%,-50%);
+    width:310px;
+    height:180px;
 
-  transition:.15s ease;
+    transform:
+    translate(-50%,-50%)
+    scale(.75);
+
+    transition:
+    transform .15s ease;
 }
 
+
+/* FRONT BODY */
+
 .car-body{
-  position:absolute;
 
-  bottom:20px;
-  left:0;
+    position:absolute;
 
-  width:330px;
-  height:70px;
+    left:50%;
+    bottom:15px;
 
-  background:
-  linear-gradient(
-    180deg,
-    #666,
-    #181818 45%,
-    #050505
-  );
+    width:300px;
+    height:125px;
 
-  border:1px solid #555;
+    transform:translateX(-50%);
 
-  border-radius:
-  60% 45% 18% 18%;
+    background:
+    linear-gradient(
+        180deg,
+        #5e5e5e 0%,
+        #222 25%,
+        #080808 70%,
+        #020202 100%
+    );
 
-  box-shadow:
-  0 25px 35px #000,
-  inset 0 1px rgba(255,255,255,.35);
+    border:1px solid #555;
+
+    border-radius:
+    48% 48% 18% 18% /
+    35% 35% 25% 25%;
+
+    box-shadow:
+    0 20px 40px #000,
+    inset 0 2px 5px rgba(255,255,255,.25);
+}
+
+
+/* WINDSHIELD */
+
+.windshield{
+
+    position:absolute;
+
+    left:50%;
+    top:15px;
+
+    width:170px;
+    height:62px;
+
+    transform:translateX(-50%);
+
+    background:
+    linear-gradient(
+        135deg,
+        #4b4b4b,
+        #101010 55%,
+        #030303
+    );
+
+    border:1px solid #444;
+
+    border-radius:
+    75px 75px 15px 15px;
+
+    clip-path:
+    polygon(
+        12% 100%,
+        25% 10%,
+        75% 10%,
+        88% 100%
+    );
 }
 
 
 /* ROOF */
 
-.car-roof{
-  position:absolute;
+.roof{
 
-  left:75px;
-  top:5px;
+    position:absolute;
 
-  width:180px;
-  height:75px;
+    left:50%;
+    top:2px;
 
-  background:
-  linear-gradient(
-    135deg,
-    #333,
-    #080808
-  );
+    width:185px;
+    height:75px;
 
-  border:1px solid #444;
+    transform:translateX(-50%);
 
-  border-radius:
-  100px 100px 10px 10px;
+    border-radius:90px 90px 20px 20px;
 
-  transform:skewX(-8deg);
-}
+    background:
+    linear-gradient(
+        180deg,
+        #444,
+        #111
+    );
 
-.car-roof:after{
-  content:"";
-
-  position:absolute;
-
-  left:25px;
-  top:12px;
-
-  width:125px;
-  height:38px;
-
-  background:
-  linear-gradient(
-    135deg,
-    #555,
-    #080808
-  );
-
-  border-radius:60px 60px 5px 5px;
-
-  opacity:.55;
+    border:1px solid #555;
 }
 
 
 /* HEADLIGHTS */
 
 .headlight{
-  position:absolute;
 
-  top:25px;
+    position:absolute;
 
-  width:48px;
-  height:12px;
+    top:67px;
 
-  background:white;
+    width:68px;
+    height:28px;
 
-  border-radius:50%;
+    background:
+    radial-gradient(
+        ellipse,
+        #ffffff 0%,
+        #eeeeee 35%,
+        #777 70%,
+        transparent 75%
+    );
 
-  box-shadow:
-  0 0 10px white,
-  0 0 25px white,
-  0 0 50px rgba(255,255,255,.5);
+    border-radius:50%;
+
+    box-shadow:
+    0 0 12px #fff,
+    0 0 30px rgba(255,255,255,.9),
+    0 0 60px rgba(255,255,255,.45);
+
+    animation:
+    headlights 1.5s infinite alternate;
 }
 
 .headlight.left{
-  left:18px;
+    left:35px;
 }
 
 .headlight.right{
-  right:18px;
+    right:35px;
+}
+
+@keyframes headlights{
+
+    from{
+        opacity:.65;
+    }
+
+    to{
+        opacity:1;
+    }
 }
 
 
-/* WHEELS */
+/* PORSCHE STYLE FRONT LINE */
 
-.wheel{
-  position:absolute;
+.front-line{
 
-  bottom:-15px;
+    position:absolute;
 
-  width:55px;
-  height:55px;
+    left:50%;
+    top:102px;
 
-  border-radius:50%;
+    width:190px;
+    height:2px;
 
-  background:#030303;
+    transform:translateX(-50%);
 
-  border:5px solid #252525;
+    background:#777;
 
-  box-shadow:
-  inset 0 0 0 5px #080808,
-  0 5px 15px #000;
-}
-
-.wheel.left{
-  left:45px;
-}
-
-.wheel.right{
-  right:45px;
+    opacity:.5;
 }
 
 
-/* RED GLOW */
+/* FRONT CENTER */
 
-.car-glow{
-  position:absolute;
+.center-badge{
 
-  left:50%;
-  top:68%;
+    position:absolute;
 
-  width:330px;
-  height:45px;
+    left:50%;
+    top:105px;
 
-  transform:translateX(-50%);
+    width:20px;
+    height:20px;
 
-  background:#e00000;
+    transform:translateX(-50%);
 
-  filter:blur(35px);
+    border:2px solid #777;
 
-  opacity:.2;
+    border-radius:50%;
 
-  animation:carGlow 1.2s infinite alternate;
-}
-
-@keyframes carGlow{
-  from{
-    opacity:.1;
-    transform:translateX(-50%) scaleX(.8);
-  }
-
-  to{
-    opacity:.35;
-    transform:translateX(-50%) scaleX(1.15);
-  }
+    opacity:.7;
 }
 
 
-/* DRIVE TEXT */
+/* LOWER AIR INTAKE */
+
+.intake{
+
+    position:absolute;
+
+    left:50%;
+    bottom:8px;
+
+    width:150px;
+    height:22px;
+
+    transform:translateX(-50%);
+
+    background:#000;
+
+    border-radius:50%;
+
+    box-shadow:
+    inset 0 0 10px #111;
+}
+
+
+/* FRONT WHEELS SHADOW */
+
+.front-wheel{
+
+    position:absolute;
+
+    bottom:2px;
+
+    width:58px;
+    height:28px;
+
+    background:#000;
+
+    border-radius:50%;
+
+    opacity:.9;
+}
+
+.front-wheel.left{
+    left:25px;
+}
+
+.front-wheel.right{
+    right:25px;
+}
+
+
+/* ================= DRIVE CONTENT ================= */
 
 .drive-content{
-  position:relative;
 
-  z-index:10;
+    position:relative;
 
-  text-align:center;
+    z-index:12;
 
-  max-width:700px;
+    text-align:center;
 
-  margin:auto;
+    max-width:700px;
 
-  padding-top:60vh;
+    margin:auto;
+
+    padding-top:72vh;
 }
 
 .drive-label{
-  font-size:10px;
-  letter-spacing:6px;
 
-  opacity:.4;
+    font-size:10px;
 
-  margin-bottom:20px;
+    letter-spacing:6px;
+
+    opacity:.4;
+
+    margin-bottom:20px;
 }
 
 .drive-title{
-  font-size:clamp(45px,9vw,100px);
 
-  font-weight:900;
+    font-size:
+    clamp(42px,9vw,100px);
 
-  letter-spacing:-5px;
+    font-weight:900;
+
+    letter-spacing:-5px;
 }
 
 .drive-title span{
-  color:#e00000;
+    color:#e00000;
 }
 
 .description{
-  max-width:450px;
 
-  margin:30px auto;
+    max-width:450px;
 
-  font-size:13px;
+    margin:30px auto;
 
-  line-height:1.8;
+    font-size:13px;
 
-  opacity:.4;
+    line-height:1.8;
+
+    opacity:.4;
 }
 
 
 /* SPEED */
 
 .speed-box{
-  width:260px;
 
-  margin:50px auto 0;
+    width:260px;
 
-  padding:25px;
+    margin:50px auto 0;
 
-  border:1px solid #252525;
+    padding:25px;
 
-  background:rgba(255,255,255,.025);
+    border:1px solid #252525;
 
-  backdrop-filter:blur(10px);
+    background:
+    rgba(255,255,255,.025);
+
+    backdrop-filter:blur(10px);
 }
 
 .speed-label{
-  font-size:9px;
 
-  letter-spacing:4px;
+    font-size:9px;
 
-  opacity:.4;
+    letter-spacing:4px;
+
+    opacity:.4;
 }
 
 .speed{
-  font-size:65px;
 
-  font-weight:bold;
+    font-size:65px;
 
-  margin:8px 0;
+    font-weight:bold;
+
+    margin:8px 0;
 }
 
 .speed-unit{
-  color:#e00000;
 
-  font-size:9px;
+    color:#e00000;
 
-  letter-spacing:3px;
+    font-size:9px;
+
+    letter-spacing:3px;
 }
 
 
 /* ================= PERFORMANCE ================= */
 
 .specs{
-  min-height:100vh;
 
-  padding:120px 7%;
+    min-height:100vh;
 
-  background:#050505;
+    padding:120px 7%;
+
+    background:#050505;
 }
 
 .spec-label{
-  font-size:10px;
 
-  letter-spacing:6px;
+    font-size:10px;
 
-  opacity:.4;
+    letter-spacing:6px;
+
+    opacity:.4;
 }
 
 .spec-heading{
-  margin-top:20px;
 
-  font-size:clamp(45px,9vw,90px);
+    margin-top:20px;
 
-  font-weight:900;
+    font-size:
+    clamp(45px,9vw,90px);
 
-  letter-spacing:-5px;
+    font-weight:900;
+
+    letter-spacing:-5px;
 }
 
 .spec-heading span{
-  color:#e00000;
+    color:#e00000;
 }
 
 .grid{
-  margin-top:70px;
 
-  display:grid;
+    margin-top:70px;
 
-  grid-template-columns:
-  repeat(3,1fr);
+    display:grid;
 
-  gap:15px;
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
 }
 
 .card{
-  min-height:190px;
 
-  padding:30px;
+    min-height:190px;
 
-  border:1px solid #202020;
+    padding:30px;
 
-  display:flex;
+    border:1px solid #202020;
 
-  flex-direction:column;
+    display:flex;
 
-  justify-content:space-between;
+    flex-direction:column;
 
-  transition:.4s;
+    justify-content:space-between;
+
+    transition:.4s;
 }
 
 .card:hover{
-  transform:translateY(-8px);
 
-  border-color:#e00000;
+    transform:translateY(-8px);
+
+    border-color:#e00000;
 }
 
 .card small{
-  font-size:9px;
 
-  letter-spacing:4px;
+    font-size:9px;
 
-  opacity:.35;
+    letter-spacing:4px;
+
+    opacity:.35;
 }
 
 .card strong{
-  font-size:42px;
+
+    font-size:42px;
 }
 
 .card span{
-  color:#e00000;
 
-  font-size:9px;
+    color:#e00000;
 
-  letter-spacing:2px;
+    font-size:9px;
+
+    letter-spacing:2px;
 }
 
 
 /* ================= FINAL ================= */
 
 .final{
-  min-height:100vh;
 
-  display:flex;
+    min-height:100vh;
 
-  align-items:center;
+    display:flex;
 
-  justify-content:center;
+    align-items:center;
 
-  text-align:center;
+    justify-content:center;
 
-  background:
-  radial-gradient(
-    circle,
-    #250000,
-    #050000 35%,
-    #000 75%
-  );
+    text-align:center;
+
+    background:
+    radial-gradient(
+        circle,
+        #250000,
+        #050000 35%,
+        #000 75%
+    );
 }
 
 .final-small{
-  font-size:10px;
 
-  letter-spacing:6px;
+    font-size:10px;
 
-  opacity:.45;
+    letter-spacing:6px;
+
+    opacity:.45;
 }
 
 .final h2{
-  margin:30px 0;
 
-  font-size:clamp(55px,12vw,140px);
+    margin:30px 0;
 
-  line-height:.85;
+    font-size:
+    clamp(55px,12vw,140px);
 
-  letter-spacing:-7px;
+    line-height:.85;
+
+    letter-spacing:-7px;
 }
 
 .final h2 span{
-  color:#e00000;
+    color:#e00000;
 }
 
 .restart{
-  padding:15px 35px;
 
-  background:transparent;
+    padding:15px 35px;
 
-  border:1px solid #444;
+    background:transparent;
 
-  color:white;
+    border:1px solid #444;
 
-  font-size:9px;
+    color:white;
 
-  letter-spacing:4px;
+    font-size:9px;
 
-  cursor:pointer;
+    letter-spacing:4px;
+
+    cursor:pointer;
+}
+
+.restart:hover{
+
+    background:white;
+
+    color:black;
 }
 
 
@@ -752,41 +895,58 @@ body{
 
 @media(max-width:700px){
 
-  .logo{
-    font-size:14px;
-    letter-spacing:5px;
-  }
+    .logo{
+        font-size:14px;
+        letter-spacing:5px;
+    }
 
-  .car{
-    transform:
-    translate(-50%,-50%)
-    scale(.78);
-  }
+    .car-scene{
+        top:39%;
+    }
 
-  .drive-content{
-    padding-top:65vh;
-  }
+    .car{
+        transform:
+        translate(-50%,-50%)
+        scale(.62);
+    }
 
-  .grid{
-    grid-template-columns:1fr;
-  }
+    .road{
+        width:85%;
+    }
 
-  .specs{
-    padding:100px 6%;
-  }
+    .drive::before{
+        left:7%;
+    }
 
-  .drive{
-    padding:100px 6%;
-  }
+    .drive::after{
+        right:7%;
+    }
 
-  .side-light{
-    display:none;
-  }
+    .drive-content{
+        padding-top:72vh;
+    }
 
+    .drive-title{
+        font-size:48px;
+        letter-spacing:-3px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .drive{
+        padding:100px 6%;
+    }
+
+    .specs{
+        padding:100px 6%;
+    }
 }
 
 </style>
 </head>
+
 
 <body>
 
@@ -795,55 +955,55 @@ body{
 
 <section class="hero" id="home">
 
-  <div class="nav">
+    <div class="nav">
 
-    <div class="logo">
-      PORSCHE
+        <div class="logo">
+            PORSCHE
+        </div>
+
+        <div class="menu">
+            +
+        </div>
+
     </div>
 
-    <div class="menu">
-      +
+
+    <div class="background-number">
+        911
     </div>
 
-  </div>
 
+    <div class="content">
 
-  <div class="background-number">
-    911
-  </div>
+        <div class="subtitle">
+            THE NIGHT DRIVE EXPERIENCE
+        </div>
 
+        <div class="number">
+            911
+        </div>
 
-  <div class="content">
+        <div class="red-line"></div>
 
-    <div class="subtitle">
-      THE NIGHT DRIVE EXPERIENCE
+        <button
+            class="start"
+            id="startButton"
+            onclick="startEngine()">
+
+            START ENGINE
+
+        </button>
+
     </div>
 
-    <div class="number">
-      911
+
+    <div class="bottom">
+
+        <span class="dot"></span>
+
+        SCROLL TO ENTER
+
     </div>
-
-    <div class="red-line"></div>
-
-    <button
-      class="start"
-      id="startButton"
-      onclick="startEngine()">
-
-      START ENGINE
-
-    </button>
-
-  </div>
-
-
-  <div class="bottom">
-
-    <span class="dot"></span>
-
-    SCROLL TO ENTER
-
-  </div>
 
 </section>
 
@@ -853,75 +1013,80 @@ body{
 
 <section class="drive" id="drive">
 
-  <div class="road"></div>
-
-  <div class="light light1"></div>
-  <div class="light light2"></div>
-  <div class="light light3"></div>
-  <div class="light light4"></div>
+    <div class="road"></div>
 
 
-  <!-- CSS CAR -->
+    <!-- FRONT FACING CAR -->
 
-  <div class="car-scene">
+    <div class="car-scene">
 
-    <div class="car-glow"></div>
+        <div class="car-glow"></div>
 
-    <div class="car">
+        <div class="car">
 
-      <div class="car-roof"></div>
+            <div class="roof"></div>
 
-      <div class="car-body">
+            <div class="windshield"></div>
 
-        <div class="headlight left"></div>
-        <div class="headlight right"></div>
+            <div class="car-body">
 
-        <div class="wheel left"></div>
-        <div class="wheel right"></div>
+                <div class="headlight left"></div>
 
-      </div>
+                <div class="headlight right"></div>
 
-    </div>
+                <div class="front-line"></div>
 
-  </div>
+                <div class="center-badge"></div>
 
+                <div class="intake"></div>
 
-  <div class="drive-content">
+                <div class="front-wheel left"></div>
 
-    <div class="drive-label">
-      NIGHT DRIVE / 01
-    </div>
+                <div class="front-wheel right"></div>
 
-    <div class="drive-title">
-      FEEL THE <span>ROAD.</span>
-    </div>
+            </div>
 
-    <div class="description">
-
-      Not just a drive.
-      A machine built around
-      precision, control and emotion.
+        </div>
 
     </div>
 
 
-    <div class="speed-box">
+    <div class="drive-content">
 
-      <div class="speed-label">
-        LIVE SPEED
-      </div>
+        <div class="drive-label">
+            NIGHT DRIVE / 01
+        </div>
 
-      <div class="speed" id="speed">
-        00
-      </div>
+        <div class="drive-title">
+            FEEL THE <span>ROAD.</span>
+        </div>
 
-      <div class="speed-unit">
-        KM / H
-      </div>
+        <div class="description">
+
+            Not just a drive.
+            A machine built around
+            precision, control and emotion.
+
+        </div>
+
+
+        <div class="speed-box">
+
+            <div class="speed-label">
+                LIVE SPEED
+            </div>
+
+            <div class="speed" id="speed">
+                00
+            </div>
+
+            <div class="speed-unit">
+                KM / H
+            </div>
+
+        </div>
 
     </div>
-
-  </div>
 
 </section>
 
@@ -931,68 +1096,68 @@ body{
 
 <section class="specs">
 
-  <div class="spec-label">
-    PERFORMANCE / 02
-  </div>
+    <div class="spec-label">
+        PERFORMANCE / 02
+    </div>
 
-  <div class="spec-heading">
-    BUILT TO <span>MOVE.</span>
-  </div>
-
-
-  <div class="grid">
-
-    <div class="card">
-
-      <small>
-        POWER
-      </small>
-
-      <strong>
-        480
-      </strong>
-
-      <span>
-        HORSEPOWER
-      </span>
-
+    <div class="spec-heading">
+        BUILT TO <span>MOVE.</span>
     </div>
 
 
-    <div class="card">
+    <div class="grid">
 
-      <small>
-        0 — 100
-      </small>
+        <div class="card">
 
-      <strong>
-        3.4
-      </strong>
+            <small>
+                POWER
+            </small>
 
-      <span>
-        SECONDS
-      </span>
+            <strong>
+                480
+            </strong>
+
+            <span>
+                HORSEPOWER
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <small>
+                0 — 100
+            </small>
+
+            <strong>
+                3.4
+            </strong>
+
+            <span>
+                SECONDS
+            </span>
+
+        </div>
+
+
+        <div class="card">
+
+            <small>
+                TOP SPEED
+            </small>
+
+            <strong>
+                308
+            </strong>
+
+            <span>
+                KM / H
+            </span>
+
+        </div>
 
     </div>
-
-
-    <div class="card">
-
-      <small>
-        TOP SPEED
-      </small>
-
-      <strong>
-        308
-      </strong>
-
-      <span>
-        KM / H
-      </span>
-
-    </div>
-
-  </div>
 
 </section>
 
@@ -1002,26 +1167,26 @@ body{
 
 <section class="final">
 
-  <div>
+    <div>
 
-    <div class="final-small">
-      THE JOURNEY ENDS HERE
+        <div class="final-small">
+            THE JOURNEY ENDS HERE
+        </div>
+
+        <h2>
+            DON'T JUST<br>
+            <span>DRIVE.</span>
+        </h2>
+
+        <button
+            class="restart"
+            onclick="restartExperience()">
+
+            RESTART EXPERIENCE
+
+        </button>
+
     </div>
-
-    <h2>
-      DON'T JUST<br>
-      <span>DRIVE.</span>
-    </h2>
-
-    <button
-      class="restart"
-      onclick="restartExperience()">
-
-      RESTART EXPERIENCE
-
-    </button>
-
-  </div>
 
 </section>
 
@@ -1033,29 +1198,29 @@ body{
 
 function startEngine(){
 
-  const button =
-  document.getElementById("startButton");
-
-  button.innerHTML =
-  "ENGINE STARTED";
-
-  button.style.background =
-  "white";
-
-  button.style.color =
-  "black";
-
-  setTimeout(function(){
+    const button =
+    document.getElementById("startButton");
 
     button.innerHTML =
-    "NIGHT DRIVE";
+    "ENGINE STARTED";
 
-    document.getElementById("drive")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
+    button.style.background =
+    "white";
 
-  },1000);
+    button.style.color =
+    "black";
+
+    setTimeout(function(){
+
+        button.innerHTML =
+        "NIGHT DRIVE";
+
+        document.getElementById("drive")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+    },1000);
 
 }
 
@@ -1074,53 +1239,52 @@ document.getElementById("speed");
 
 window.addEventListener("scroll",function(){
 
-  const drive =
-  document.getElementById("drive");
+    const drive =
+    document.getElementById("drive");
 
-  const rect =
-  drive.getBoundingClientRect();
-
-  const progress =
-  Math.max(
-    0,
-    Math.min(
-      1,
-      (window.innerHeight - rect.top) /
-      (window.innerHeight + rect.height)
-    )
-  );
+    const rect =
+    drive.getBoundingClientRect();
 
 
-  /* CAR MOVEMENT */
-
-  const move =
-  (progress - .5) * 180;
-
-  const scale =
-  .72 + progress * .65;
-
-
-  car.style.transform =
-  `translate(
-    calc(-50% + ${move}px),
-    -50%
-  ) scale(${scale})`;
+    const progress =
+    Math.max(
+        0,
+        Math.min(
+            1,
+            (window.innerHeight - rect.top) /
+            (window.innerHeight + rect.height)
+        )
+    );
 
 
-  glow.style.transform =
-  `translateX(
-    calc(-50% + ${move}px)
-  ) scaleX(${scale})`;
+    /* CAR COMES TOWARD YOU */
+
+    const move =
+    (progress - .5) * 35;
+
+    const scale =
+    .62 + progress * .95;
 
 
-  /* SPEED */
+    car.style.transform =
+    `translate(
+        calc(-50% + ${move}px),
+        -50%
+    ) scale(${scale})`;
 
-  const currentSpeed =
-  Math.floor(progress * 308);
 
-  speed.innerHTML =
-  String(currentSpeed)
-  .padStart(2,"0");
+    glow.style.transform =
+    `translateX(-50%) scale(${scale})`;
+
+
+    /* LIVE SPEED */
+
+    const currentSpeed =
+    Math.floor(progress * 308);
+
+    speed.innerHTML =
+    String(currentSpeed)
+    .padStart(2,"0");
 
 });
 
@@ -1129,13 +1293,13 @@ window.addEventListener("scroll",function(){
 
 function restartExperience(){
 
-  window.scrollTo({
+    window.scrollTo({
 
-    top:0,
+        top:0,
 
-    behavior:"smooth"
+        behavior:"smooth"
 
-  });
+    });
 
 }
 
